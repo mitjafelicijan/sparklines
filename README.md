@@ -21,3 +21,5 @@ Add `sparkline.js` to your HTML file and use proper data attributes and that is 
 ```
 
 Check `index.html` for more examples.
+
+To create minified version of `sparkline.js` use `npx minify sparkline.js > sparkline.min.js`.
