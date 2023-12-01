@@ -1,6 +1,6 @@
 # Simple SVG Sparklines
 
-![Preview](https://github.com/mitjafelicijan/sparkline/assets/296714/79caafea-7ee1-4bcd-8f7f-a007a618d1fb)
+![Preview](https://github.com/mitjafelicijan/sparkline/assets/296714/bffe023d-4e9a-461c-976c-7e78b296b14c)
 
 Add `sparkline.js` to your HTML file and use proper data attributes and that is about it.
 
