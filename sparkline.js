@@ -4,7 +4,7 @@
     const width = parseInt(sparkline.dataset.width, 10) || 100;
     const height = parseInt(sparkline.dataset.height, 10) || 30;
     const gap = parseInt(sparkline.dataset.gap, 10) || 5;
-    const color = sparkline.dataset.color || 'blue';
+    const color = sparkline.dataset.color || 'gray';
     let points = sparkline.dataset.points || null;
 
     // Return if no data is provided.

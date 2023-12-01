@@ -1,5 +1,7 @@
 # Simple SVG Sparklines
 
+![Preview](https://github.com/mitjafelicijan/sparkline/assets/296714/79caafea-7ee1-4bcd-8f7f-a007a618d1fb)
+
 Add `sparkline.js` to your HTML file and use proper data attributes and that is about it.
 
 | Attribute | Description | Default Value |
@@ -9,7 +11,7 @@ Add `sparkline.js` to your HTML file and use proper data attributes and that is 
 | data-width | Width of the container in px | 100 |
 | data-height | Height of the container in px | 30 |
 | data-gap | Gap between the bars in px | 5 |
-| data-color | Color of the bars in HEX or color name | blue |
+| data-color | Color of the bars in HEX or color name | gray |
 
 **Example**
 
