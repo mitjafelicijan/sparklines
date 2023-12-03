@@ -27,6 +27,7 @@
     function bar(sparkline, svg, points, width, height, colors, gap) {
       const columnWidth = (gap/points.length) + (width/points.length) - gap;
       const maxValue = Math.max(...points);
+
       points.forEach((point, idx) => {
         const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
         const rectHeight = (point/maxValue)*height;
@@ -42,12 +43,14 @@
 
         svg.appendChild(rect);
       });
+
       sparkline.appendChild(svg);
     }
 
     function line(sparkline, svg, points, width, height, colors, strokeWidth) {
       const spacing = width/(points.length-1);
       const maxValue = Math.max(...points);
+
       const pointsCoords = [];
       points.forEach((point, idx) => {
         const maxHeight = (point/maxValue)*height;
