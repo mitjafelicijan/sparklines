@@ -71,7 +71,6 @@
       const centerX = width / 2;
       const centerY = height / 2;
       const total = points.reduce((acc, val) => acc + val, 0);
-      const gapRadians = (gap / radius); // Convert gap size to radians
       let startAngle = 0;
 
       points.forEach((point, idx) => {
