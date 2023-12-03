@@ -67,3 +67,16 @@ Check `kitchensink.html` for more examples.
 <div data-sparkline="true" data-points="11,14,20,21,37" data-width="40" data-height="40" data-colors="indigo,silver,linen,khaki,crimson" data-type="pie"></div>
 <div data-sparkline="true" data-points="20,44,23" data-width="40" data-height="40" data-colors="olive,green,#FFB6C1" data-type="pie"></div>
 ```
+
+## Additional reading material
+
+- https://www.w3.org/2002/Talks/www2002-svgtut-ih/hwtut.pdf
+- https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Introduction
+- https://www.w3schools.com/graphics/svg_intro.asp
+- https://tutorial.math.lamar.edu/pdf/Trig_Cheat_Sheet_Reduced.pdf
+
+## License
+
+[sparklines](https://github.com/mitjafelicijan/sparklines) was written by [Mitja
+Felicijan](https://mitjafelicijan.com) and is released under the BSD two-clause
+license, see the LICENSE file for more information.
