@@ -74,6 +74,7 @@
       let startAngle = 0;
 
       points.forEach((point, idx) => {
+        const color = colors[idx % colors.length];
         const sliceAngle = (point / total) * 2 * Math.PI;
         const endAngle = startAngle + sliceAngle;
 
@@ -81,8 +82,6 @@
         const y1 = centerY + radius * Math.sin(startAngle);
         const x2 = centerX + radius * Math.cos(endAngle);
         const y2 = centerY + radius * Math.sin(endAngle);
-
-        let color = colors[idx % colors.length];
 
         const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         const largeArcFlag = sliceAngle > Math.PI ? 1 : 0;
