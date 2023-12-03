@@ -102,7 +102,6 @@
       sparkline.appendChild(svg);
     }
 
-
     switch (type) {
     case 'bar': {
       bar(sparkline, svg, points, width, height, colors, gap);
