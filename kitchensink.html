@@ -10,7 +10,7 @@
       body { max-width: 1200px; }
     </style>
   </head>
-  <body class="mx-auto p-24 bg-black text-white">
+  <body class="mx-auto p-10 md:p-24 bg-black text-white">
 
     <h1 class="text-3xl font-bold mb-10">Sparkline Kitchensink</h1>
 
@@ -18,7 +18,7 @@
       <h2 class="text-xl font-medium">Bar charts</h2>
       <p class="text-gray-500">Bar charts are the default charts if no type if provided.</p>
     </div>
-    <section class="grid grid-cols-3 gap-12 mb-16">
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
       <div data-sparkline="true" data-points="14,19,7,9,18,20,17"></div>
       <div data-sparkline="true" data-points="18,13,19,14,14,3,4,8,7,9,2,8,0,20,7,3,2,5,12,15" data-colors="white,gray" data-width="300" data-height="50" data-gap="5"></div>
       <div data-sparkline="true" data-points="16,2,5,5,20,11,12,19,17,18,13,8,3,5,14,19,6,1,12,4" data-width="100" data-height="50" data-gap="2" data-colors="purple"></div>
@@ -31,7 +31,7 @@
       <h2 class="text-xl font-medium">Line charts</h2>
       <p class="text-gray-500">Line charts can have a bunch of data and still be readable.</p>
     </div>
-    <section class="grid grid-cols-3 gap-12 mb-16">
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
       <div data-sparkline="true" data-points="15,3,17,15,7,11,11,5,0,16,1,13,1,12,13,8,16,4,0,0" data-width="200" data-height="30" data-colors="white" data-stroke-width="3" data-type="line"></div>
       <div data-sparkline="true" data-points="3,8,0,14,11,0,7,1,15,15,20,12,8,13,13,5,1,12,1,11" data-width="200" data-height="30" data-colors="gray" data-stroke-width="1" data-type="line"></div>
       <div data-sparkline="true" data-points="2,16,8,18,2,11,19,12,7,12,12,15,0,0,18,1,7,18,1,13" data-width="200" data-height="30" data-colors="yellow" data-stroke-width="2" data-type="line"></div>
@@ -41,7 +41,7 @@
       <h2 class="text-xl font-medium">Pie charts</h2>
       <p class="text-gray-500">For better readability, use pie charts only when you have small amount of data points.</p>
     </div>
-    <section class="grid grid-cols-4 gap-12 mb-16">
+    <section class="grid grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
       <div data-sparkline="true" data-points="10,16,8,18,5,11" data-width="40" data-height="40" data-colors="purple,brown,aqua,yellow" data-type="pie"></div>
       <div data-sparkline="true" data-points="8,44" data-width="40" data-height="40" data-colors="transparent,silver" data-type="pie"></div>
       <div data-sparkline="true" data-points="11,14,20,21,37" data-width="40" data-height="40" data-colors="indigo,silver,linen,khaki,crimson" data-type="pie"></div>
@@ -52,7 +52,7 @@
       <h2 class="text-xl font-medium">Stacked charts</h2>
       <p class="text-gray-500">Stacked charts can only be horizontal. Rotate with CSS to have them be vertical.</p>
     </div>
-    <section class="grid grid-cols-3 gap-12 mb-16">
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
       <div data-sparkline="true" data-points="33,23,44" data-width="300" data-height="20" data-colors="white,purple,orange" data-type="stacked"></div>
       <div data-sparkline="true" data-points="14,19,44" data-width="300" data-height="20" data-gap="0" data-colors="white,purple,orange" data-type="stacked"></div>
       <div data-sparkline="true" data-points="14,19" data-width="300" data-height="20" data-gap="0" data-colors="white,gray" data-type="stacked"></div>
@@ -62,7 +62,7 @@
       <h2 class="text-xl font-medium">Using labels</h2>
       <p class="text-gray-500">Hover over charts to see details data about that datapoint.</p>
     </div>
-    <section class="grid grid-cols-3 gap-12 mb-16">
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
       <div data-sparkline="true" data-points="14,19,7" data-labels="Apple,Banana,Mango" data-format="%label is %point (%percent)"></div>
       <div data-sparkline="true" data-points="14,19,7" data-labels="Apple,Banana,Mango" data-format="%label is %point (%percent)" data-width="40" data-height="40" data-colors="tan,brown,aqua,yellow" data-type="pie"></div>
       <div data-sparkline="true" data-points="14,19,7" data-labels="Apple,Banana" data-format="%label is %point (%percent)" data-width="300" data-height="20" data-colors="white,tan,purple" data-gap="0" data-type="stacked"></div>
@@ -72,7 +72,7 @@
       <h2 class="text-xl font-medium">Programmatic update</h2>
       <p class="text-gray-500">Either click on the button or let timers do it periodically.</p>
     </div>
-    <section class="grid grid-cols-3 gap-12 mb-16">
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
       <div class="flex flex-col gap-6">
         <div id="some-chart-1" data-sparkline="true" data-points="14,19,7" data-width="300" data-height="20" data-colors="white,purple,orange,gray,yellow" data-type="stacked"></div>
         <div>
