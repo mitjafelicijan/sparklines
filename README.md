@@ -6,6 +6,8 @@ Self-contained tiny SVG sparkline chart library written in vanilla JS with zero 
 
 Add `sparklines.js` to your HTML file and use proper data attributes and that is about it.
 
+Check kitchensink demo on mitjafelicijan.github.io/sparklines/.
+
 ## Basic usage
 
 ```html
