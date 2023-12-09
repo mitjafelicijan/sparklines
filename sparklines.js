@@ -59,6 +59,7 @@
         rect.setAttribute('height', rectHeight);
         rect.setAttribute('fill', color);
 
+
         const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
         title.textContent = point;
         rect.appendChild(title);
