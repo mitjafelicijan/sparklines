@@ -2,7 +2,7 @@
 
 ![Preview](https://github.com/mitjafelicijan/sparklines/assets/296714/d60ec13e-fb0c-42cc-89c1-bab270b7571f)
 
-Self-contained small SVG sparkline chart library with zero dependencies.
+Self-contained tiny SVG sparkline chart library written in vanilla JS with zero dependencies.
 
 Add `sparklines.js` to your HTML file and use proper data attributes and that is about it.
 
