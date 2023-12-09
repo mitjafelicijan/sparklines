@@ -9,7 +9,14 @@ Add `sparklines.js` to your HTML file and use proper data attributes and that is
 ## Basic usage
 
 ```html
-<div data-sparkline="true" data-points="6,2,3,4,5" data-width="300" data-height="50" data-gap="15" data-colors="#ff0000"></div>
+<div data-sparkline="true"
+	 data-points="6,2,3,4,5"
+	 data-width="300"
+	 data-height="50"
+	 data-gap="15"
+	 data-colors="#ff0000"
+	 data-type="bar"></div>
+
 <script src="sparklines.js" defer></script>
 ```
 
