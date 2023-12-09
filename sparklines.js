@@ -42,7 +42,7 @@
     }
 
     function formatString(format, point) {
-
+      // TODO: Add string formatting.
     }
 
     function bar(sparkline, opts) {
