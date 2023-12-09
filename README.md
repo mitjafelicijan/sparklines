@@ -15,7 +15,7 @@ Add `sparklines.js` to your HTML file and use proper data attributes and that is
   data-width="300"
   data-height="50"
   data-gap="15"
-  data-colors="#ff0000"
+  data-colors="#ff0000,purple,orange"
   data-type="bar"></div>
 
 <script src="sparklines.js" defer></script>
