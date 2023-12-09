@@ -27,6 +27,12 @@ Check `kitchensink.html` for more examples.
 
 > To create minified version of `sparklines.js` use `npx minify sparklines.js > sparklines.min.js`.
 
+You can also use CDN for this library so that you don't need to host it
+yourself:
+
+- https://cdn.jsdelivr.net/gh/mitjafelicijan/sparklines/sparklines.js
+- https://cdn.jsdelivr.net/gh/mitjafelicijan/sparklines/sparklines.min.js
+
 ## Bar charts
 
 | Attribute | Description | Default Value |
