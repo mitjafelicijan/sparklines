@@ -118,6 +118,8 @@ You can also change colors or any `data-*` attribute. There are no restrictions.
 ## Notes
 
 - `transparent` is a valid option for `data-colors` attribute.
+- If not enough colors is provided the library will cycle through available
+  ones.
 
 ## Additional reading material
 
