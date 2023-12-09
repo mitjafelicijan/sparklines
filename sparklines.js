@@ -1,83 +1,105 @@
 (() => {
   const sparklines = document.querySelectorAll('[data-sparkline="true"]');
-  sparklines.forEach(sparkline => {
-    const width = parseInt(sparkline.dataset.width, 10) || 100;
-    const height = parseInt(sparkline.dataset.height, 10) || 30;
-    const gap = parseInt(sparkline.dataset.gap, 10) || 5;
-    const strokeWidth = parseInt(sparkline.dataset.strokeWidth, 10) || 2;
-    const type = sparkline.dataset.type || 'bar';
-    let colors = sparkline.dataset.colors || ['gray'];
-    let points = sparkline.dataset.points || null;
+  if (!sparklines) return; // Just stop and exit if nothing found.
 
-    if (!Array.isArray(colors)) {
-      colors = sparkline.dataset.colors.split(',');
+  sparklines.forEach(sparkline => {
+    let opts = null; // Global opts variable.
+
+    function setup(sparkline) {
+      let defaultOpts = {
+        svg: null,
+        width: parseIntWithDefault(sparkline.dataset.width, 100),
+        height: parseIntWithDefault(sparkline.dataset.height, 30),
+        gap: parseIntWithDefault(sparkline.dataset.gap, 5),
+        strokeWidth: parseIntWithDefault(sparkline.dataset.strokeWidth, 2),
+        type: sparkline.dataset.type || 'bar',
+        colors: sparkline.dataset.colors || ['gray'],
+        points: sparkline.dataset.points || null,
+        labels: sparkline.dataset.labels || null,
+        format: sparkline.dataset.format || null,
+      };
+
+      defaultOpts.svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      defaultOpts.svg.setAttribute('width', defaultOpts.width);
+      defaultOpts.svg.setAttribute('height', defaultOpts.height);
+
+      return defaultOpts
     }
 
-    // Return if no data is provided.
-    if (!points) { return }
+    function parseIntWithDefault(val, defaultValue) {
+      let parsed = parseInt(val, 10);
+      return isNaN(parsed) ? defaultValue : parsed;
+    }
 
-    // Convert to integer point array.
-    points = points.split(',').map(item => parseInt(item, 10));
+    function validate(sparkline, opts) {
+      if (!Array.isArray(opts.colors)) {
+        opts.colors = sparkline.dataset.colors.split(',');
+      }
 
-    // Create SVG sparkline.
-    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.setAttribute('width', width);
-    svg.setAttribute('height', height);
+      if (!opts.points) { return }
+      sparkline.innerHTML = '';
+      opts.points = opts.points.split(',').map(item => parseInt(item, 10));
+    }
 
-    function bar(sparkline, svg, points, width, height, colors, gap) {
-      const columnWidth = (gap/points.length) + (width/points.length) - gap;
-      const maxValue = Math.max(...points);
+    function formatString(format, point) {
 
-      points.forEach((point, idx) => {
+    }
+
+    function bar(sparkline, opts) {
+      const columnWidth = (opts.gap/opts.points.length) + (opts.width/opts.points.length) - opts.gap;
+      const maxValue = Math.max(...opts.points);
+
+      opts.points.forEach((point, idx) => {
+        const color = opts.colors[idx % opts.colors.length];
         const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        const rectHeight = (point/maxValue)*height;
-        rect.setAttribute('x', (idx*columnWidth) + (idx*gap));
-        rect.setAttribute('y', height-rectHeight);
+        const rectHeight = (point/maxValue)*opts.height;
+        rect.setAttribute('x', (idx*columnWidth) + (idx*opts.gap));
+        rect.setAttribute('y', opts.height-rectHeight);
         rect.setAttribute('width', columnWidth);
         rect.setAttribute('height', rectHeight);
-        rect.setAttribute('fill', colors[0]);
+        rect.setAttribute('fill', color);
 
         const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
         title.textContent = point;
         rect.appendChild(title);
 
-        svg.appendChild(rect);
+        opts.svg.appendChild(rect);
       });
 
-      sparkline.appendChild(svg);
+      sparkline.appendChild(opts.svg);
     }
 
-    function line(sparkline, svg, points, width, height, colors, strokeWidth) {
-      const spacing = width/(points.length-1);
-      const maxValue = Math.max(...points);
+    function line(sparkline, opts) {
+      const spacing = opts.width/(opts.points.length-1);
+      const maxValue = Math.max(...opts.points);
 
       const pointsCoords = [];
-      points.forEach((point, idx) => {
-        const maxHeight = (point/maxValue)*height;
+      opts.points.forEach((point, idx) => {
+        const maxHeight = (point/maxValue)*opts.height;
         const x = idx*spacing;
-        const y = height-maxHeight;
+        const y = opts.height-maxHeight;
         pointsCoords.push(`${x},${y}`);
       });
 
       const line = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
       line.setAttribute('points', pointsCoords.join(' '));
       line.setAttribute('fill', 'none');
-      line.setAttribute('stroke-width', strokeWidth);
-      line.setAttribute('stroke', colors[0]);
-      svg.appendChild(line);
+      line.setAttribute('stroke-width', opts.strokeWidth);
+      line.setAttribute('stroke', opts.colors[0]);
+      opts.svg.appendChild(line);
 
-      sparkline.appendChild(svg);
+      sparkline.appendChild(opts.svg);
     }
 
-    function pie(sparkline, svg, points, width, height, colors, gap) {
-      const radius = Math.min(width, height) / 2;
-      const centerX = width / 2;
-      const centerY = height / 2;
-      const total = points.reduce((acc, val) => acc + val, 0);
+    function pie(sparkline, opts) {
+      const radius = Math.min(opts.width, opts.height) / 2;
+      const centerX = opts.width / 2;
+      const centerY = opts.height / 2;
+      const total = opts.points.reduce((acc, val) => acc + val, 0);
       let startAngle = 0;
 
-      points.forEach((point, idx) => {
-        const color = colors[idx % colors.length];
+      opts.points.forEach((point, idx) => {
+        const color = opts.colors[idx % opts.colors.length];
         const sliceAngle = (point / total) * 2 * Math.PI;
         const endAngle = startAngle + sliceAngle;
 
@@ -96,26 +118,74 @@
         title.textContent = `${(point/total*100).toFixed(2)}%`;
         path.appendChild(title);
 
-        svg.appendChild(path);
+        opts.svg.appendChild(path);
         startAngle = endAngle;
       });
 
-      sparkline.appendChild(svg);
+      sparkline.appendChild(opts.svg);
     }
 
-    switch (type) {
-    case 'bar': {
-      bar(sparkline, svg, points, width, height, colors, gap);
-      break;
+    function stacked(sparkline, opts) {
+      let total = opts.points.reduce((a, b) => a + b, 0);
+      let totalGapWidth = (opts.points.length - 1) * opts.gap;
+      let availableWidth = opts.width - totalGapWidth;
+
+      let offset = 0;
+      opts.points.forEach((point, idx) => {
+        const color = opts.colors[idx % opts.colors.length];
+        const rectWidth = (point / total) * availableWidth;
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', offset);
+        rect.setAttribute('y', 0);
+        rect.setAttribute('width', rectWidth);
+        rect.setAttribute('height', opts.height);
+        rect.setAttribute('fill', color);
+
+        const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+        title.textContent = point;
+        rect.appendChild(title);
+
+        opts.svg.appendChild(rect);
+        offset += rectWidth + opts.gap;
+      });
+
+      sparkline.appendChild(opts.svg);
     }
-    case 'line': {
-      line(sparkline, svg, points, width, height, colors, strokeWidth);
-      break;
+
+    function render(sparkline, opts) {
+      switch (opts.type) {
+      case 'bar': {
+        bar(sparkline, opts);
+        break;
+      }
+      case 'line': {
+        line(sparkline, opts);
+        break;
+      }
+      case 'pie': {
+        pie(sparkline, opts);
+        break;
+      }
+      case 'stacked': {
+        stacked(sparkline, opts);
+        break;
+      }
+      default: {
+        console.error(`${type} is not a valid sparkline type`);
+      }
+      }
     }
-    case 'pie': {
-      pie(sparkline, svg, points, width, height, colors, gap);
-      break;
-    }
-    }
+
+    // Initializes and renders the chart.
+    opts = setup(sparkline, opts);
+    validate(sparkline, opts);
+    render(sparkline, opts);
+
+    // Listens to update event and then updated the chart.
+    sparkline.addEventListener('update', (evt) => {
+      opts = setup(sparkline, opts);
+      validate(sparkline, opts);
+      render(sparkline, opts);
+    });
   });
 })();

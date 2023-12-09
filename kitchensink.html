@@ -4,49 +4,120 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SVG Sparkline Kitchensink</title>
-
-    <style>
-      /* None of this CSS is needed for the library. */
-      body {
-        background: #111;
-        font-family: sans-serif;
-        padding: 5em;
-        color: white;
-      }
-
-      h1 { margin-block-end: 4em; }
-
-      section {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 3em;
-      }
-
-      svg { border: 1px dotted transparent; }
-      svg:hover { border: 1px dotted red; }
-    </style>
+    <title>Sparkline Kitchensink</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   </head>
-  <body>
+  <body class="p-16 bg-black text-white">
 
-    <h1>SVG Sparkline Kitchensink</h1>
+    <h1 class="text-3xl font-bold mb-10">Sparkline Kitchensink</h1>
 
-    <section>
-      <div data-sparkline="true" data-points="14,19,7,9,18,20,17" data-colors="white,blue"></div>
-      <div data-sparkline="true" data-points="18,13,19,14,14,3,4,8,7,9,2,8,0,20,7,3,2,5,12,15" data-width="300" data-height="50" data-gap="5"></div>
+    <div class="border-b border-gray-700 pb-2 mb-10">
+      <h2 class="text-xl font-medium">Bar charts</h2>
+      <p class="text-gray-500">Bar charts are the default charts if no type if provided.</p>
+    </div>
+    <section class="grid grid-cols-3 gap-10 mb-16">
+      <div data-sparkline="true" data-points="14,19,7,9,18,20,17"></div>
+      <div data-sparkline="true" data-points="18,13,19,14,14,3,4,8,7,9,2,8,0,20,7,3,2,5,12,15" data-colors="white,gray" data-width="300" data-height="50" data-gap="5"></div>
       <div data-sparkline="true" data-points="16,2,5,5,20,11,12,19,17,18,13,8,3,5,14,19,6,1,12,4" data-width="100" data-height="50" data-gap="2" data-colors="purple"></div>
       <div data-sparkline="true" data-points="20,14,4,3,17,2,8,12,19,11,6,17,5,8,13,12,17,9,1,0" data-width="300" data-height="50" data-gap="15" data-colors="#ffff00"></div>
       <div data-sparkline="true" data-points="4,8,10,3,16,15,0,0,8,18,11,14,14,0,11,14,16,14,15,6" data-width="200" data-height="50"></div>
       <div data-sparkline="true" data-points="10,4,10,15,18,10,12,8,11,4,13,14,6,18,17,12,0,13,14,3" data-width="200" data-height="50"></div>
+    </section>
 
+    <div class="border-b border-gray-700 pb-2 mb-10">
+      <h2 class="text-xl font-medium">Line charts</h2>
+      <p class="text-gray-500">Line charts can have a bunch of data and still be readable.</p>
+    </div>
+    <section class="grid grid-cols-3 gap-10 mb-16">
       <div data-sparkline="true" data-points="15,3,17,15,7,11,11,5,0,16,1,13,1,12,13,8,16,4,0,0" data-width="200" data-height="30" data-colors="white" data-stroke-width="3" data-type="line"></div>
       <div data-sparkline="true" data-points="3,8,0,14,11,0,7,1,15,15,20,12,8,13,13,5,1,12,1,11" data-width="200" data-height="30" data-colors="gray" data-stroke-width="1" data-type="line"></div>
       <div data-sparkline="true" data-points="2,16,8,18,2,11,19,12,7,12,12,15,0,0,18,1,7,18,1,13" data-width="200" data-height="30" data-colors="yellow" data-stroke-width="2" data-type="line"></div>
+    </section>
 
+    <div class="border-b border-gray-700 pb-2 mb-10">
+      <h2 class="text-xl font-medium">Pie charts</h2>
+      <p class="text-gray-500">For better readability, use pie charts only when you have small amount of data points.</p>
+    </div>
+    <section class="grid grid-cols-3 gap-10 mb-16">
       <div data-sparkline="true" data-points="10,16,8,18,5,11" data-width="40" data-height="40" data-colors="blue,brown,aqua,yellow" data-type="pie"></div>
       <div data-sparkline="true" data-points="11,14,20,21,37" data-width="40" data-height="40" data-colors="indigo,silver,linen,khaki,crimson" data-type="pie"></div>
       <div data-sparkline="true" data-points="8,44" data-width="40" data-height="40" data-colors="silver,gray" data-type="pie"></div>
     </section>
+
+    <div class="border-b border-gray-700 pb-2 mb-10">
+      <h2 class="text-xl font-medium">Stacked charts</h2>
+      <p class="text-gray-500">Stacked charts can only be horizontal. Rotate with CSS to have them be vertical.</p>
+    </div>
+    <section class="grid grid-cols-3 gap-10 mb-16">
+      <div data-sparkline="true" data-points="33,23,44" data-width="300" data-height="20" data-colors="white,blue,orange" data-type="stacked"></div>
+      <div data-sparkline="true" data-points="14,19,44" data-width="300" data-height="20" data-gap="0" data-colors="white,blue,orange" data-type="stacked"></div>
+      <div data-sparkline="true" data-points="14,19" data-width="300" data-height="20" data-gap="0" data-colors="white, gray" data-type="stacked"></div>
+    </section>
+
+    <div class="border-b border-gray-700 pb-2 mb-10">
+      <h2 class="text-xl font-medium">Using labels</h2>
+      <p class="text-gray-500">Hover over charts to see details data about that datapoint.</p>
+    </div>
+    <section class="grid grid-cols-3 gap-10 mb-16">
+      <div data-sparkline="true" data-points="14,19,7" data-labels="Apple,Banana,Mango" data-format="%label is %point (%percent)"></div>
+      <div data-sparkline="true" data-points="14,19,7" data-labels="Apple,Banana,Mango" data-format="%label is %point (%percent)" data-width="40" data-height="40" data-colors="tan,brown,aqua,yellow" data-type="pie"></div>
+      <div data-sparkline="true" data-points="14,19,7" data-labels="Apple,Banana" data-format="%label is %point (%percent)" data-width="300" data-height="20" data-colors="white,tan,purple" data-gap="0" data-type="stacked"></div>
+    </section>
+
+    <div class="border-b border-gray-700 pb-2 mb-10">
+      <h2 class="text-xl font-medium">Programmatic update</h2>
+      <p class="text-gray-500">Either click on the button or let timers do it periodically.</p>
+    </div>
+    <section class="grid grid-cols-3 gap-10 mb-16">
+      <div class="flex flex-col gap-6">
+        <div id="some-chart-1" data-sparkline="true" data-points="14,19,7" data-width="300" data-height="20" data-colors="white,blue,orange" data-type="stacked"></div>
+        <div>
+          <button onclick="update()" class="border border-gray-600 bg-gray-800 hover:bg-gray-700 rounded px-3 py-1">Manually update</button>
+        </div>
+        <script>
+          function update() {
+            const chart = document.querySelector('#some-chart-1');
+            chart.dataset.points = generateRandomData(5); // refer to function bellow.
+            chart.dispatchEvent(new Event('update'));
+          }
+        </script>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <div id="some-chart-2" data-sparkline="true" data-points="15,3,17,15,7,11,11,5,0,16,1,13,1,12,13,8,16,4,0,0" data-width="200" data-height="30" data-colors="white" data-stroke-width="2" data-type="line"></div>
+        <div class="text-gray-400 italic">Updates every 1 second</div>
+        <script>
+          setInterval(() => {
+            const chart = document.querySelector('#some-chart-2');
+            chart.dataset.points = generateRandomData(20); // refer to function bellow.
+            chart.dispatchEvent(new Event('update'));
+          }, 1000);
+        </script>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <div id="some-chart-3" data-sparkline="true" data-points="18,13,19,14,14,3,4,8,7,9,2,8,0,20,7,3,2,5,12,15" data-width="300" data-height="30" data-gap="5"></div>
+        <div class="text-gray-400 italic">Updates every 2 second</div>
+        <script>
+          setInterval(() => {
+            const chart = document.querySelector('#some-chart-3');
+            chart.dataset.points = generateRandomData(20); // refer to function bellow.
+            chart.dispatchEvent(new Event('update'));
+          }, 2000);
+        </script>
+      </div>
+    </section>
+
+    <script>
+      function generateRandomData(numOfSlices) {
+        const randomValues = [];
+        for (let i = 0; i < numOfSlices; i++) {
+          const randomValue = Math.floor(Math.random() * (100 - 10 + 1)) + 10;
+          randomValues.push(randomValue);
+        }
+        return randomValues.join(',');
+      }
+    </script>
 
 	  <script src="sparklines.js" defer></script>
 
